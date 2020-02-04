@@ -1,0 +1,23 @@
+@mixin addFontFamily($familyName: '', $fileName: '', $formats: null, $fontWeight: 400, $fontStyle: 'normal')
+	$allUrl: ()
+	$i: 1
+	@each $format in $formats
+		@if length($formats) != $i
+			$allUrl: append($allUrl, #{'url("../font/#{$fileName}.#{$format}") format("#{$format}"),'})
+		@if length($formats) == $i
+			$allUrl: append($allUrl, #{'url("../font/#{$fileName}.#{$format}") format("#{$format}")'})
+		$i: $i + 1
+	@font-face
+		font-family: $familyName
+		src: $allUrl
+		font-weight: $fontWeight
+		font-style: $fontStyle
+
+@include addFontFamily('Montserrat', $fileName: 'Montserrat-Bold', $formats: ('woff', 'woff2'), $fontWeight: 700)
+@include addFontFamily('Montserrat', $fileName: 'Montserrat-BoldItalic', $formats: ('woff', 'woff2'), $fontWeight: 700, $fontStyle: italic)
+@include addFontFamily('Montserrat', $fileName: 'Montserrat-Medium', $formats: ('woff', 'woff2'), $fontWeight: 500)
+@include addFontFamily('Montserrat', $fileName: 'Montserrat-MediumItalic', $formats: ('woff', 'woff2'), $fontWeight: 500, $fontStyle: italic)
+@include addFontFamily('Montserrat', $fileName: 'Montserrat-Regular', $formats: ('woff', 'woff2'), $fontWeight: 400, $fontStyle: normal)
+@include addFontFamily('Montserrat', $fileName: 'Montserrat-Italic', $formats: ('woff', 'woff2'), $fontWeight: 400, $fontStyle: italic)
+@include addFontFamily('Montserrat', $fileName: 'Montserrat-Light', $formats: ('woff', 'woff2'), $fontWeight: 300, $fontStyle: normal)
+@include addFontFamily('Montserrat', $fileName: 'Montserrat-LightItalic', $formats: ('woff', 'woff2'), $fontWeight: 300, $fontStyle: italic)
